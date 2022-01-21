@@ -12,7 +12,28 @@ struct ContentView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
 
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List(0..<missions.count) { row in
+                NavigationLink {
+                    MissionDetailView(mission: missions[row])
+                } label: {
+                    HStack {
+                        Image(missions[row].imageName)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                        VStack(alignment: .leading) {
+                            Text(missions[row].displayName)
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            Text("\(missions[row].formattedLaunchDate)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("NASA Missions")
+        }
     }
 }
 
