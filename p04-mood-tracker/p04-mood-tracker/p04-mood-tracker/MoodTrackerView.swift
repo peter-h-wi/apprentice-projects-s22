@@ -10,15 +10,11 @@ import SwiftUI
 struct MoodTrackerView: View {
     @StateObject var vm: MoodTrackerViewModel
     
-    @State private var selectedStrength = 1
-    @State private var myMood = ""
-    @State private var myColor = Color.blue
-    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
                 Group {
-                    Text("idoom")
+                    Text("Moodiary")
                         .font(Font.system(.largeTitle, design: .default).weight(.semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .clipped()
@@ -27,28 +23,28 @@ struct MoodTrackerView: View {
                         .padding(.top, 11)
                     HStack {
                         VStack {
-                            ColorPicker("Mood Color", selection: $myColor)
+                            ColorPicker("Mood Color!", selection: $vm.myColor)
                                 .foregroundColor(.white)
                                 .font(.headline)
                                 .padding()
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(myColor)
+                        .background(vm.myColor)
                         .cornerRadius(10)
                         .shadow(color: Color(.sRGBLinear, red: 0/255, green: 0/255, blue:0/255).opacity(0.25), radius: 8, x: 0, y: 4)
                         .padding(.horizontal)
                         VStack(alignment: .leading) {
-                            Text("My Mood")
+                            Text("Your Feeling?")
                                 .foregroundColor(Color.secondary)
                                 .font(.headline )
-                            TextField("Happy", text: $myMood)
+                            TextField("Happy!", text: $vm.myMood)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .font(.body)
                             Spacer()
-                            Text("Strength")
+                            Text("How much?")
                                 .font(.headline)
                                 .foregroundColor(.secondary)
-                            Picker("Strength of Mood", selection: $selectedStrength) {
+                            Picker("Strength of Mood", selection: $vm.selectedStrength) {
                                 ForEach(1..<6) {
                                     Text("\($0)")
                                 }
@@ -60,8 +56,9 @@ struct MoodTrackerView: View {
                     }
                     .padding(.vertical)
                     Button(action: {
-                        var result = vm.addMood(curMood: myMood, curStrength: selectedStrength, curColor: myColor)
-                        myMood = ""
+                        withAnimation(.spring()) {
+                            vm.addMood()
+                        }
                     }) {
                         Text("Save")
                             .bold()
@@ -78,18 +75,23 @@ struct MoodTrackerView: View {
                     
                     ForEach(vm.getMoods().reversed(), id: \.id) { mood in
                         HStack(spacing: 14) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 90, height: 90)
+                            let grad = AngularGradient(
+                                gradient: Gradient(colors: [mood.color, .white]),
+                                center: .center,
+                                angle: .degrees(0))
+                                
+                            Circle()
+                                .fill(grad)
+                                .frame(width: 80, height: 80)
                                 .shadow(color: Color(.sRGBLinear, red: 0/255, green: 0/255, blue:0/255).opacity(0.25), radius: 4, x: 0, y: 2)
-                                .foregroundColor(mood.color)
                                 
                             VStack(alignment: .leading, spacing: 0) {
                                 Spacer()
                                     .frame(height: 5)
                                     .clipped()
-                                Text(mood.mood)
+                                Text("Feeling " + mood.mood.lowercased() + "!")
                                     .font(Font.system(.headline, design: .default).weight(.medium))
-                                Text("\(mood.strength)/5")
+                                Text("How much? \(mood.strength) out of 5!")
                                     .font(Font.system(.subheadline, design: .default).weight(.regular))
                                     .foregroundColor(.secondary)
                                 Text(mood.formattedTimestamp)
@@ -104,9 +106,15 @@ struct MoodTrackerView: View {
                     }
                 }
                 Group {
-                    Button(action: {}) {
-                        Text("Load more")
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            vm.isShort.toggle()
+                        }
+                    }) {
+                        let msg = vm.isShort ? "Load more" : "Show less"
+                        Text(msg)
                             .font(Font.system(.subheadline, design: .default))
+                            .foregroundColor(.cyan)
                             .padding()
                     }
                     
