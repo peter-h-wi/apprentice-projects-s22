@@ -3,6 +3,7 @@
 //  p03-flag-refactor
 //
 //  Created by Samuel Shi on 1/17/22.
+//  Redeveloped by Peter Wi on 1/21/22.
 //
 
 import SwiftUI
@@ -11,7 +12,7 @@ import SwiftUI
 struct p03_flag_refactorApp: App {
     var body: some Scene {
         WindowGroup {
-            GameView()
+            ContentView()
         }
     }
 }

@@ -4,15 +4,14 @@
 //
 //  Created by hawkeyeshi on 6/2/20.
 //  Copyright © 2020 samrshi. All rights reserved.
+//  Redeveloped by Peter Wi on 1/21/22.
 //
 
 import SwiftUI
 
 struct GameView: View {
-    @State private var countries = CountryList.countries.shuffled().prefix(3)
-    @State private var correctAnswerIndex = Int.random(in: 0...2)
-    @State private var score = 0
-
+    let game: GameViewModel
+    
     @State private var showingAlert = false
     @State private var alertTitle = ""
     
@@ -26,21 +25,21 @@ struct GameView: View {
             VStack {
                 Text("Tap the flag of")
                     
-                Text(targetCountry.name)
+                Text(game.getCountry().name)
                     .font(.largeTitle)
                     .fontWeight(.black)
                     
-                Text("Score: \(score)")
+                Text("Score: \(game.getScore())")
 
                 Spacer()
                     
-                ForEach(countries, id: \.id) { country in
+                ForEach(game.getCountries(), id: \.id) { country in
                     Button(action: {
-                        if country == targetCountry {
+                        if country == game.getCountry() {
                             alertTitle = "Correct"
-                            score += 1
+                            game.correctAnswer()
                         } else {
-                            alertTitle = "Wrong! Thats the flag of \(country)"
+                            alertTitle = "Wrong! Thats the flag of \(country.name)"
                         }
                         
                         showingAlert = true
@@ -53,23 +52,19 @@ struct GameView: View {
             }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text(alertTitle),
-                      message: Text("Your Score is \(score)"),
+                      message: Text("Your Score is \(game.getScore())"),
                       dismissButton: .default(Text("Continue")) {
-                          countries = CountryList.countries.shuffled().prefix(3)
-                          correctAnswerIndex = Int.random(in: 0...2)
-                      })
+                    game.newGame()
+                })
             }
         }
         .preferredColorScheme(.dark)
     }
     
-    var targetCountry: Country {
-        return countries[correctAnswerIndex]
-    }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameView()
+//    }
+//}
