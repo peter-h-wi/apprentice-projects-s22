@@ -10,57 +10,56 @@
 import SwiftUI
 
 struct GameView: View {
-    let game: GameViewModel
-    
-    @State private var showingAlert = false
-    @State private var alertTitle = ""
-    
+    @StateObject var vm: GameViewModel
+
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .black]),
-                           startPoint: .top,
-                           endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Text("Tap the flag of")
-                    
-                Text(game.getCountry().name)
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                    
-                Text("Score: \(game.getScore())")
-
-                Spacer()
-                    
-                ForEach(game.getCountries(), id: \.id) { country in
+            VStack(spacing: 30) {
+                VStack {
+                    Text("Tap the flag of")
+                        .font(.title)
+                        .foregroundColor(.white)
+                    Text(vm.getCountry().name)
+                        .foregroundColor(.white)
+                    // .largeTitle is the largest built-in font size - absed on user setting for their font size
+                        .font(.largeTitle)
+                        .fontWeight(.black)
+                    Text("Score: \(vm.getScore())")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+                
+                ForEach(vm.getCountries(), id: \.id) { country in
                     Button(action: {
-                        if country == game.getCountry() {
-                            alertTitle = "Correct"
-                            game.correctAnswer()
-                        } else {
-                            alertTitle = "Wrong! Thats the flag of \(country.name)"
+                        withAnimation {
+                            if (country == vm.getCountry()) {
+                                vm.correct()
+                            } else {
+                                vm.wrong()
+                            }
+                            vm.isClicked.toggle()
+                            vm.showingScore = true
                         }
-                        
-                        showingAlert = true
                     }) {
-                        FlagImage(imageName: country.name)
+                        FlagImage(image: country.name)
+                            .rotation3DEffect(.degrees(country == vm.getCountry() ? vm.animationAmount : 0), axis: (x:0, y:1, z:0))
+                            .opacity(vm.isClicked ? (country == vm.getCountry() ? 1 : 0.25) : 1)
+                            .scaleEffect(vm.isClicked ? (country == vm.getCountry() ? 1 : 0.8) : 1)
                     }
                 }
-                    
-                Spacer()
             }
-            .alert(isPresented: $showingAlert) {
-                Alert(title: Text(alertTitle),
-                      message: Text("Your Score is \(game.getScore())"),
-                      dismissButton: .default(Text("Continue")) {
-                    game.newGame()
+            .alert(isPresented: $vm.showingScore) {
+                var msg: Text
+                msg = Text("Your score is \(vm.getScore())")
+                
+                return Alert(title: Text(vm.scoreTitle), message: msg, dismissButton: .default(Text("Continue")) {
+                    vm.newGame()
                 })
             }
         }
-        .preferredColorScheme(.dark)
     }
-    
 }
 
 //struct ContentView_Previews: PreviewProvider {

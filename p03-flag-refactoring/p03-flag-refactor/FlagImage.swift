@@ -10,19 +10,20 @@
 import SwiftUI
 
 struct FlagImage: View {
-    var imageName: String
-
+    var image: String
     var body: some View {
-        Image(imageName)
+        Image(image)
             .renderingMode(.original)
+        // clipShape: rectangle, rounded rectangle, circle, and capsule
             .clipShape(Capsule())
-            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
-            .padding(10)
+        // overlay: drawing a border around the image -> a capture has a black stroke around its edge
+            .overlay(Capsule().stroke(Color.white, lineWidth: 2))
+            .shadow(color: .black, radius: 2)
     }
 }
 
 struct FlagImage_Previews: PreviewProvider {
     static var previews: some View {
-        FlagImage(imageName: "Estonia")
+        FlagImage(image: "Estonia")
     }
 }
