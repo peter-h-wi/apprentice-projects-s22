@@ -2,15 +2,16 @@
 //  ContentView.swift
 //  p04-mood-tracker
 //
-//  Created by Samuel Shi on 1/17/22.
+//  Created by peter wi on 1/22/22.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var vm = MoodTrackerViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MoodTrackerView(vm: vm)
     }
 }
 

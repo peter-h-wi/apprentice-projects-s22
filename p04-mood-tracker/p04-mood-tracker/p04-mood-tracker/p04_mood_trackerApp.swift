@@ -2,7 +2,7 @@
 //  p04_mood_trackerApp.swift
 //  p04-mood-tracker
 //
-//  Created by Samuel Shi on 1/17/22.
+//  Created by peter wi on 1/22/22.
 //
 
 import SwiftUI
