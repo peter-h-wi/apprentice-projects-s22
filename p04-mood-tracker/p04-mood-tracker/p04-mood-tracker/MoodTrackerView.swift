@@ -76,7 +76,7 @@ struct MoodTrackerView: View {
                     ForEach(vm.getMoods().reversed(), id: \.id) { mood in
                         HStack(spacing: 14) {
                             let grad = AngularGradient(
-                                gradient: Gradient(colors: [mood.color, .white]),
+                                gradient: Gradient(colors: [Color(.sRGB, red: mood.r, green: mood.g, blue: mood.b, opacity: mood.o), .white]),
                                 center: .center,
                                 angle: .degrees(0))
                                 
@@ -128,6 +128,9 @@ struct MoodTrackerView: View {
             .clipped()
             .padding(.top, 10)
         }
+        .onAppear(perform: {
+            vm.fetchAllMoods()
+        })
     }
 }
 

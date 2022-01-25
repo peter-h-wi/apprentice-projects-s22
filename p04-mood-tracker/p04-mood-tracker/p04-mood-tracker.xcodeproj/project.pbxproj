@@ -14,6 +14,8 @@
 		FE5A6341279C856E00D15A67 /* MoodTrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5A6340279C856E00D15A67 /* MoodTrackerViewModel.swift */; };
 		FE5A6343279C882300D15A67 /* MoodTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5A6342279C882300D15A67 /* MoodTrackerView.swift */; };
 		FE5A6363279CAD1C00D15A67 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5A6362279CAD1C00D15A67 /* Mood.swift */; };
+		FE722A01279F503A00528639 /* MoodAppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE7229FF279F503A00528639 /* MoodAppModel.xcdatamodeld */; };
+		FE722A03279F505800528639 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE722A02279F505800528639 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		FE5A6340279C856E00D15A67 /* MoodTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerViewModel.swift; sourceTree = "<group>"; };
 		FE5A6342279C882300D15A67 /* MoodTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTrackerView.swift; sourceTree = "<group>"; };
 		FE5A6362279CAD1C00D15A67 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		FE722A00279F503A00528639 /* MoodAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoodAppModel.xcdatamodel; sourceTree = "<group>"; };
+		FE722A02279F505800528639 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				FE5A6342279C882300D15A67 /* MoodTrackerView.swift */,
 				FE5A6340279C856E00D15A67 /* MoodTrackerViewModel.swift */,
 				FE5A6362279CAD1C00D15A67 /* Mood.swift */,
+				FE722A02279F505800528639 /* CoreDataManager.swift */,
+				FE7229FF279F503A00528639 /* MoodAppModel.xcdatamodeld */,
 				FE5A6334279C830600D15A67 /* Assets.xcassets */,
 				FE5A6336279C830600D15A67 /* Preview Content */,
 			);
@@ -148,8 +154,10 @@
 			files = (
 				FE5A6363279CAD1C00D15A67 /* Mood.swift in Sources */,
 				FE5A6341279C856E00D15A67 /* MoodTrackerViewModel.swift in Sources */,
+				FE722A01279F503A00528639 /* MoodAppModel.xcdatamodeld in Sources */,
 				FE5A6333279C830500D15A67 /* ContentView.swift in Sources */,
 				FE5A6343279C882300D15A67 /* MoodTrackerView.swift in Sources */,
+				FE722A03279F505800528639 /* CoreDataManager.swift in Sources */,
 				FE5A6331279C830500D15A67 /* p04_mood_trackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +361,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FE7229FF279F503A00528639 /* MoodAppModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FE722A00279F503A00528639 /* MoodAppModel.xcdatamodel */,
+			);
+			currentVersion = FE722A00279F503A00528639 /* MoodAppModel.xcdatamodel */;
+			path = MoodAppModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FE5A6325279C830500D15A67 /* Project object */;
 }
