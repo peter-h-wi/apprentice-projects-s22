@@ -9,9 +9,44 @@ import SwiftUI
 
 struct PostView: View {
     let post: Post
+    @State private var clickLike: Bool = false
 
     var body: some View {
-        Text("Hello, World!")
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Image(post.authorImageAddress)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 50, height: 50)
+                VStack(alignment: .leading) {
+                    Text(post.authorName)
+                    Text("@"+post.authorUsername)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+                Text(post.formattedDate)
+                    .foregroundColor(.secondary)
+            }
+            Text(post.postContent)
+            HStack {
+                Button(action: {
+                    clickLike.toggle()
+                }) {
+                    Image(systemName: "heart")
+                        .foregroundColor(clickLike ? .red : .secondary)
+                    Text("\(post.likeCount)")
+                        .foregroundColor(clickLike ? .red : .secondary)
+                }
+                Button(action: {
+                    
+                }) {
+                    Image(systemName: "bubble.left")
+                        .foregroundColor(.secondary)
+                    Text("\(post.commentCount)")
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
     }
 }
 
