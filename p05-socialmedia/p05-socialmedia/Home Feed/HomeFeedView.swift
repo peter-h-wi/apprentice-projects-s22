@@ -12,34 +12,47 @@ struct HomeFeedView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 20) {
-                        ForEach(posts, id: \.id) { post in
-                            VStack {
-                                Image(post.authorImageAddress)
-                                    .resizable()
-                                    .clipShape(Circle())
-                                    .frame(width: 50, height: 50)
-                                    .padding(3)
-                                    .overlay(Circle().stroke(.blue, lineWidth: 2))
-                                Text(post.authorName.components(separatedBy: " ").first!)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                }
-                .frame(height: 100)
+            VStack(spacing: 0) {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVStack() {
                         ForEach(posts, id: \.id) { post in
-                            Divider()
                             PostView(post: post)
                                 .padding()
+                            Divider()
                         }
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                Divider()
+                HStack {
+                    Button(action: {
+                        
+                    }) {
+                        VStack {
+                            Image(systemName: "house.fill")
+                                .font(.title)
+                            Text("Home")
+                                .font(.subheadline)
+                        }
+                        .foregroundColor(.blue)
+                    }
+                    Spacer()
+                    Button(action: {
+                        
+                    }) {
+                        VStack {
+                            Image(systemName: "person.fill")
+                                .font(.title)
+                            Text("Profile")
+                                .font(.subheadline)
+                        }
+                        .foregroundColor(.secondary)
+                    }
+                }
+                .padding(.top, 10)
+                .padding(.horizontal, 50)
+                
+                
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Text("bluebird")
@@ -64,5 +77,6 @@ struct HomeFeedView: View {
 struct HomeFeedView_Previews: PreviewProvider {
     static var previews: some View {
         HomeFeedView()
+            .bothColorSchemes()
     }
 }
