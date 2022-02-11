@@ -13,16 +13,17 @@ struct HomeFeedView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    LazyVStack() {
-                        ForEach(posts, id: \.id) { post in
-                            PostView(post: post)
-                                .padding()
-                            Divider()
+                VStack(spacing: 0) {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        LazyVStack() {
+                            ForEach(posts, id: \.id) { post in
+                                PostView(post: post)
+                                    .padding()
+                                Divider()
+                            }
                         }
                     }
                 }
-                .navigationBarTitleDisplayMode(.inline)
                 Divider()
                 HStack {
                     Button(action: {
@@ -37,9 +38,7 @@ struct HomeFeedView: View {
                         .foregroundColor(.blue)
                     }
                     Spacer()
-                    Button(action: {
-                        
-                    }) {
+                    NavigationLink(destination: ProfileView()) {
                         VStack {
                             Image(systemName: "person.fill")
                                 .font(.title)
@@ -51,22 +50,21 @@ struct HomeFeedView: View {
                 }
                 .padding(.top, 10)
                 .padding(.horizontal, 50)
-                
-                
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("bluebird")
-                            .font(.system(.title, design: .serif))
-                            .bold()
-                            .foregroundColor(.blue)
-                            .italic()
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            
-                        }) {
-                            Image(systemName: "square.and.pencil")
-                        }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("bluebird")
+                        .font(.system(.title, design: .serif))
+                        .bold()
+                        .foregroundColor(.blue)
+                        .italic()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "square.and.pencil")
                     }
                 }
             }

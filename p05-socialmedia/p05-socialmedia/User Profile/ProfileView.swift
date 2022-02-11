@@ -17,8 +17,8 @@ struct ProfileView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Color(.blue).opacity(0.3)
-                .frame(height: 100)
+            Color(red: 0.529, green: 0.808, blue: 0.922)
+                .frame(height: 130)
             VStack(alignment: .leading, spacing: 0) {
                 TopView(name: name, username: username, profileImageAddress: profileImageAddress)
                 
@@ -70,9 +70,7 @@ struct TopView: View {
                                 .stroke(.primary, lineWidth: 4))
                     .shadow(radius: 10)
                 Spacer()
-                Button(action: {
-                    
-                }) {
+                NavigationLink(destination: ProfileSettings()) {
                     Text("Edit Profile")
                         .font(.subheadline)
                         .bold()
