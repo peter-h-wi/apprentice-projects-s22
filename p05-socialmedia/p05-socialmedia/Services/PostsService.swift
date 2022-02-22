@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct PostsService {
+    private static var posts: [Post] = []
+    
+    static func getHomeFeed() -> [Post] {
+        return posts
+    }
+    
+    static func makePost(post: Post) {
+        posts.append(post)
+    }
+}
