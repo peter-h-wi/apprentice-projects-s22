@@ -24,32 +24,6 @@ struct HomeFeedView: View {
                         }
                     }
                 }
-                Divider()
-                HStack {
-                    Button(action: {
-                        
-                    }) {
-                        VStack {
-                            Image(systemName: "house.fill")
-                                .font(.title)
-                            Text("Home")
-                                .font(.subheadline)
-                        }
-                        .foregroundColor(.blue)
-                    }
-                    Spacer()
-                    NavigationLink(destination: ProfileView()) {
-                        VStack {
-                            Image(systemName: "person.fill")
-                                .font(.title)
-                            Text("Profile")
-                                .font(.subheadline)
-                        }
-                        .foregroundColor(.secondary)
-                    }
-                }
-                .padding(.top, 10)
-                .padding(.horizontal, 50)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

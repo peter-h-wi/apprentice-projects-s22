@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    let name: String = "App Team Carolina"
+    @State private var name: String = "App Team Carolina"
     let username: String = "appteamcarolina"
     let profileImageAddress: String = "appteam" // will eventually be url
     @State private var menuIndex = 0
@@ -16,34 +16,35 @@ struct ProfileView: View {
     let userPosts: [Post] = PostList.defaultPosts
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Color(red: 0.529, green: 0.808, blue: 0.922)
-                .frame(height: 130)
+        NavigationView {
             VStack(alignment: .leading, spacing: 0) {
-                TopView(name: name, username: username, profileImageAddress: profileImageAddress)
-                
-                MenuView(menuIndex: $menuIndex)
-                Rectangle()
-                    .frame(width: .infinity, height: 2)
-                    .foregroundColor(.secondary)
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading) {
-                        Text("Topics to follow")
-                            .font(.title2)
-                            .bold()
-                        Text("Tweets about the Topics you follow show up in your Home timeline")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
+                Color(red: 0.529, green: 0.808, blue: 0.922)
+                    .frame(height: 130)
+                VStack(alignment: .leading, spacing: 0) {
+                    TopView(name: $name, username: username, profileImageAddress: profileImageAddress)
+                    
+                    MenuView(menuIndex: $menuIndex)
+                    Divider()
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(alignment: .leading) {
+                            Text("Topics to follow")
+                                .font(.title2)
+                                .bold()
+                            Text("Tweets about the Topics you follow show up in your Home timeline")
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+                        ForEach(userPosts, id: \.id) { post in
+                            PostView(post: post)
+                        }
                     }
-                    ForEach(userPosts, id: \.id) { post in
-                        PostView(post: post)
-                    }
+                    .padding()
                 }
-                .padding()
+                .offset(y: -40)
             }
-            .offset(y: -40)
+            .ignoresSafeArea()
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea()
     }
 }
 
@@ -55,7 +56,7 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 struct TopView: View {
-    let name: String
+    @Binding var name: String
     let username: String
     let profileImageAddress: String
     
@@ -70,7 +71,7 @@ struct TopView: View {
                                 .stroke(.primary, lineWidth: 4))
                     .shadow(radius: 10)
                 Spacer()
-                NavigationLink(destination: ProfileSettings()) {
+                NavigationLink(destination: ProfileSettings(name: $name)) {
                     Text("Edit Profile")
                         .font(.subheadline)
                         .bold()
