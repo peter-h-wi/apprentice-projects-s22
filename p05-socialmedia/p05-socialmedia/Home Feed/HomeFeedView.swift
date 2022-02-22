@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeFeedView: View {
-    let posts: [Post] = PostList.defaultPosts
+    @StateObject private var vm = HomeFeedViewModel()
     
     var body: some View {
         NavigationView {
@@ -16,7 +16,7 @@ struct HomeFeedView: View {
                 VStack(spacing: 0) {
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack() {
-                            ForEach(posts, id: \.id) { post in
+                            ForEach(vm.posts, id: \.id) { post in
                                 PostView(post: post)
                                     .padding()
                                 Divider()
@@ -35,13 +35,12 @@ struct HomeFeedView: View {
                         .italic()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        
-                    }) {
+                    NavigationLink(destination: NewPostView(name: "app team", username: "appteam", imageAddress: "appteam")) {
                         Image(systemName: "square.and.pencil")
                     }
                 }
             }
+            .onAppear(perform: vm.fetchPosts)
         }
     }
 }

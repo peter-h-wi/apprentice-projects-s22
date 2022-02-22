@@ -15,6 +15,6 @@ struct PostsService {
     }
     
     static func makePost(post: Post) {
-        posts.append(post)
+        posts.insert(post, at: 0)
     }
 }
