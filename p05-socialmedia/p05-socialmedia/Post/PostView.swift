@@ -34,7 +34,7 @@ struct PostView: View {
                 }) {
                     Image(systemName: "heart")
                         .foregroundColor(clickLike ? .red : .secondary)
-                    Text("\(post.likeCount)")
+                    Text("\(clickLike ? post.likeCount+1 : post.likeCount)")
                         .foregroundColor(clickLike ? .red : .secondary)
                 }
                 Button(action: {
