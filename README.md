@@ -6,7 +6,7 @@ Central repository for App Team Carolina's Academy Apprenticeship projects in Sp
 
 |Num|Name|Screenshots|Key Points
 |--|--|--|--|
-|05|[bluebird](p05-socialmedia)|<img src="p05-socialmedia/Screenshots/frame_1.png" width="150"/><img src="p05-socialmedia/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.Core Data<br>3.Color Picker<br>4.Animation
+|05|[bluebird](p05-socialmedia)|<img src="p05-socialmedia/Screenshots/frame_1.png" width="150"/><img src="p05-socialmedia/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.Tab View<br>3.Codable<br>4.URLSession
 |04|[moodiary](p04-mood-tracker)|<img src="p04-mood-tracker/Screenshots/moodiary_4.png" width="150"/><img src="p04-mood-tracker/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.Core Data<br>3.Color Picker<br>4.Animation
 |03|[flag-game](p03-flag-refactoring)|<img src="p03-flag-refactoring/Screenshots/flag_1.png" width="150"/><img src="p03-flag-refactoring/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.State<br>3.Animation<br>4.Alert
 |02|[apollo](p02-apollo)|<img src="p02-apollo/Screenshots/apollo_1.png" width="150"/><img src="p02-apollo/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.NavigationLink<br>3.Binding<br>4.ForEach
