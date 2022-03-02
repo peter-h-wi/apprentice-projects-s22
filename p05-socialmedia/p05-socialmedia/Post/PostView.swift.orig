@@ -1,0 +1,87 @@
+//
+//  PostView.swift
+//  p05-socialmedia
+//
+//  Created by Samuel Shi on 1/31/22.
+//
+
+import SwiftUI
+
+struct PostView: View {
+    let post: Post
+<<<<<<< HEAD
+    @State private var clickLike: Bool = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Image(post.authorImageAddress)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 50, height: 50)
+                VStack(alignment: .leading) {
+                    Text(post.authorName)
+                    Text("@"+post.authorUsername)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+                Text(post.formattedDate)
+                    .foregroundColor(.secondary)
+            }
+            Text(post.postContent)
+            HStack {
+                Button(action: {
+                    clickLike.toggle()
+                }) {
+                    Image(systemName: "heart")
+                        .foregroundColor(clickLike ? .red : .secondary)
+                    Text("\(clickLike ? post.likeCount+1 : post.likeCount)")
+                        .foregroundColor(clickLike ? .red : .secondary)
+                }
+                Button(action: {
+                    
+                }) {
+                    Image(systemName: "bubble.left")
+                        .foregroundColor(.secondary)
+                    Text("\(post.commentCount)")
+                        .foregroundColor(.secondary)
+                }
+=======
+    
+    var body: some View {
+        VStack(spacing: 15) {
+            HStack {
+                Image(post.authorImageAddress)
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+                
+                VStack(alignment: .leading) {
+                    Text(post.authorName)
+                    Text(post.authorUsername)
+                        .foregroundColor(.secondary)
+                        .font(.callout)
+                }
+                
+                Spacer()
+            }
+            
+            Text(post.postContent)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            HStack {
+                Label("\(post.likeCount)", systemImage: "heart")
+                Label("\(post.commentCount)", systemImage: "heart")
+                Spacer()
+>>>>>>> 40a09e74571dfed19183295c3e04a8c35be4ddbf
+            }
+        }
+    }
+}
+
+struct PostView_Previews: PreviewProvider {
+    static var previews: some View {
+        PostView(post: .example)
+            .bothColorSchemes()
+    }
+}

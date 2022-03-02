@@ -12,11 +12,17 @@ struct ContentView: View {
         TabView {
             HomeFeedView()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label("Home", systemImage: "house")
                 }
-            ProfileView()
+            
+            NewPostView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.fill")
+                    Label("New Post", systemImage: "plus.circle")
+                }
+            
+            Text("Profile")
+                .tabItem {
+                    Label("Profile", systemImage: "person")
                 }
         }
     }

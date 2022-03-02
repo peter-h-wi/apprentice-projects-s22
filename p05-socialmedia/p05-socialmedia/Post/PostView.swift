@@ -9,45 +9,37 @@ import SwiftUI
 
 struct PostView: View {
     let post: Post
-    @State private var clickLike: Bool = false
-
+        
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(spacing: 15) {
             HStack {
                 Image(post.authorImageAddress)
                     .resizable()
-                    .clipShape(Circle())
                     .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+                
                 VStack(alignment: .leading) {
                     Text(post.authorName)
-                    Text("@"+post.authorUsername)
+                    Text(post.authorUsername)
                         .foregroundColor(.secondary)
+                        .font(.callout)
                 }
+                
                 Spacer()
-                Text(post.formattedDate)
-                    .foregroundColor(.secondary)
             }
+            
             Text(post.postContent)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
             HStack {
-                Button(action: {
-                    clickLike.toggle()
-                }) {
-                    Image(systemName: "heart")
-                        .foregroundColor(clickLike ? .red : .secondary)
-                    Text("\(clickLike ? post.likeCount+1 : post.likeCount)")
-                        .foregroundColor(clickLike ? .red : .secondary)
-                }
-                Button(action: {
-                    
-                }) {
-                    Image(systemName: "bubble.left")
-                        .foregroundColor(.secondary)
-                    Text("\(post.commentCount)")
-                        .foregroundColor(.secondary)
-                }
+                Label("\(post.likeCount)", systemImage: "heart")
+                Label("\(post.commentCount)", systemImage: "heart")
+                Spacer()
             }
         }
     }
+
+    
 }
 
 struct PostView_Previews: PreviewProvider {
