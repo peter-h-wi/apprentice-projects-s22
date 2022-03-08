@@ -6,6 +6,7 @@ Central repository for App Team Carolina's Academy Apprenticeship projects in Sp
 
 |Num|Name|Screenshots|Key Points
 |--|--|--|--|
+|06|[widget-todo](p06-widgetkit-intro)|<img src="p06-widgetkit-intro/Screenshots/frame_1.png" width="150"/><img src="p06-widgetkit-intro/Screenshots/record_1.gif" width="135"/>|1.WidgetKit<br>2.Size Classes<br>3.Deep Links<br>4.TimelineProvider
 |05|[bluebird](p05-socialmedia)|<img src="p05-socialmedia/Screenshots/frame_1.png" width="150"/><img src="p05-socialmedia/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.Tab View<br>3.Codable<br>4.URLSession
 |04|[moodiary](p04-mood-tracker)|<img src="p04-mood-tracker/Screenshots/moodiary_4.png" width="150"/><img src="p04-mood-tracker/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.Core Data<br>3.Color Picker<br>4.Animation
 |03|[flag-game](p03-flag-refactoring)|<img src="p03-flag-refactoring/Screenshots/flag_1.png" width="150"/><img src="p03-flag-refactoring/Screenshots/record_1.gif" width="135"/>|1.MVVM Pattern<br>2.State<br>3.Animation<br>4.Alert
